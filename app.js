@@ -2,12 +2,16 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const expresslayouts = require('express-ejs-layouts');
+const db = require('./config/mongoose');
 
 
 // use express router
 app.use(express.static('./assets'))
 app.use(expresslayouts);
 app.use('/' , require('./routes'))
+app.use(express.urlencoded({
+    extended: false
+}));
 
 
 // setup the view engine
