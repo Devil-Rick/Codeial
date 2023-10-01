@@ -1,0 +1,10 @@
+body{
+    background-color: burlywood;
+}
+div{
+    text-align: center;
+}
+
+input{
+    display: block;
+}
