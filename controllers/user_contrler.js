@@ -1,18 +1,27 @@
 const User = require('../model/user')
 
 module.exports.profile = (req, res)=>{
-    return res.render('home', {
-        title : "Codeial"
+    return res.render('profile', {
+        title : "Codeial",
     })
 }
 
 module.exports.signin = (req, res)=>{
+
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_signIn', {
         title: "Codeial | SignIn"
     })
 };
 
 module.exports.signup = (req, res)=>{
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_signUp', {
         title: "Codeial | SignUp"
     })
@@ -23,7 +32,7 @@ module.exports.signup = (req, res)=>{
 module.exports.newUser = (req, res)=>{
     console.log(req.body);
     if(req.body.password != req.body.confirm_password){
-        return res.redirect('home')
+        return res.redirect('/')
     }
 
     // searching if the email is available or not
@@ -47,5 +56,14 @@ module.exports.newUser = (req, res)=>{
 
 // get the sign in Data
 module.exports.session = (req, res)=>{
-
+    console.log('res');
+    return res.redirect('/')
 };
+
+
+module.exports.destroySession = (req, res)=>{
+    req.logout(req.user, err => {
+        if(err) return next(err);
+        res.redirect("/");
+      });
+}
