@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  background-color: blue;
+  color: #fff;
+  justify-content: space-between;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+header ul {
+  display: flex;
+  width: 10%;
+  justify-content: space-between;
+}
